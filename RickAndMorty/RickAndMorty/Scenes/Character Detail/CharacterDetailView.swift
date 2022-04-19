@@ -9,31 +9,23 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct CharacterDetailView: View {
-    let character: Character
-    let episodes: [Episode]
-    
+    @StateObject var store: CharacterDetailStore
+
     var body: some View {
         ZStack {
             BackgroundGradientView()
             
-            ScrollView {
-                VStack(spacing: 16) {
-                    WebImage(url: character.imageUrl)
-                        .resizable()
-                        .placeholder {
-                            ProgressView()
-                        }
-                        .aspectRatio(contentMode: .fit)
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                    
-                    infoSection
-                    
-                    episodesSection
-                }
+            switch store.state {
+            case .initial, .loading:
+                ProgressView()
+            case .failed:
+                Text("😢 Something went wrong")
+            case .finished:
+                content
             }
-            .padding(.horizontal, 8)
         }
-        .navigationTitle(character.name)
+        .navigationTitle(store.character.name)
+        .onFirstAppear(perform: load)
     }
 }
 
@@ -49,22 +41,22 @@ private extension CharacterDetailView {
                     HStack(alignment: .top, spacing: 8) {
                         Image(systemName: "creditcard")
                         
-                        Text(character.name)
+                        Text(store.character.name)
                             .alignmentGuide(.horizontalInfoAlignment, computeValue: { $0[.leading]} )
                     }
                     
                     HStack(alignment: .top, spacing: 8) {
                         Image(systemName: "person.fill.questionmark")
                         
-                        Text(character.species)
+                        Text(store.character.species)
                             .alignmentGuide(.horizontalInfoAlignment, computeValue: { $0[.leading]} )
                     }
                     
-                    if !character.type.isEmpty {
+                    if !store.character.type.isEmpty {
                         HStack(alignment: .top, spacing: 8) {
                             Image(systemName: "person.fill.viewfinder")
                             
-                            Text(character.type)
+                            Text(store.character.type)
                                 .alignmentGuide(.horizontalInfoAlignment, computeValue: { $0[.leading]} )
                         }
                     }
@@ -72,7 +64,7 @@ private extension CharacterDetailView {
                     HStack(alignment: .top, spacing: 8) {
                         Image(systemName: "person.and.arrow.left.and.arrow.right")
                         
-                        Text(character.gender)
+                        Text(store.character.gender)
                             .alignmentGuide(.horizontalInfoAlignment, computeValue: { $0[.leading]} )
                     }
                 }
@@ -83,13 +75,13 @@ private extension CharacterDetailView {
                     HStack(alignment: .top, spacing: 8) {
                         Image(systemName: "globe")
                         
-                        Text(character.origin.name)
+                        Text(store.character.origin.name)
                     }
                     
                     HStack(alignment: .top, spacing: 8) {
                         Image(systemName: "eyes")
                         
-                        Text(character.location.name)
+                        Text(store.character.location.name)
                     }
                 }
             }
@@ -104,7 +96,7 @@ private extension CharacterDetailView {
                 .foregroundColor(.appTextSectionTitle)
             
             LazyVStack(spacing: 8) {
-                ForEach(episodes) { episode in
+                ForEach(store.episodes) { episode in
                     HStack {
                         Text(episode.name)
                         
@@ -120,13 +112,38 @@ private extension CharacterDetailView {
             }
         }
     }
+
+    var content: some View {
+        ScrollView {
+            VStack(spacing: 16) {
+                WebImage(url: store.character.imageUrl)
+                    .resizable()
+                    .placeholder {
+                        ProgressView()
+                    }
+                    .aspectRatio(contentMode: .fit)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                
+                infoSection
+                
+                episodesSection
+            }
+        }
+        .padding(.horizontal, 8)
+    }
+}
+
+// MARK: - Actions
+private extension CharacterDetailView {
+    func load() {
+        Task {
+            await store.load()
+        }
+    }
 }
 
 struct CharacterDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        CharacterDetailView(
-            character: Character.mock,
-            episodes: Episode.mockList
-        )
+        CharacterDetailView(store: .init(character: .mock))
     }
 }

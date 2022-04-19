@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EpisodesListView: View {
-    let episodes = Episode.mockList
+    @StateObject var store = EpisodesListStore()
     
     @State private var presentedRottenTomatoesEpisode: Episode?
     
@@ -16,9 +16,17 @@ struct EpisodesListView: View {
         ZStack {
             BackgroundGradientView()
             
-            content
+            switch store.state {
+            case .initial, .loading:
+                ProgressView()
+            case .finished:
+                content
+            case .failed:
+                Text("😢 Something went wrong")
+            }
         }
         .navigationTitle("Episodes")
+        .onFirstAppear(perform: load)
         .sheet(item: $presentedRottenTomatoesEpisode) { episode in
             if let url = episode.rottenTomatoesUrl {
                 WebView(url: url)
@@ -32,7 +40,7 @@ struct EpisodesListView: View {
         ScrollView {
             Group {
                 LazyVStack {
-                    ForEach(episodes) { episode in
+                    ForEach(store.episodes) { episode in
                         EpisodesListItemView(episode: episode)
                             .onTapGesture {
                                 presentRottenTomatoes(for: episode)
@@ -49,6 +57,15 @@ struct EpisodesListView: View {
             BackgroundGradientView()
             
             Text("Something went wrong 😭")
+        }
+    }
+}
+
+// MARK: - Actions
+private extension EpisodesListView {
+    func load() {
+        Task {
+            await store.load()
         }
     }
 }
