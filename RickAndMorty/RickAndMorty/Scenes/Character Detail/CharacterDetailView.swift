@@ -21,7 +21,7 @@ struct CharacterDetailView: View {
             case .failed:
                 Text("😢 Something went wrong")
             case .finished:
-                content
+                makeContent(for: store.character)
             }
         }
         .navigationTitle(store.character.name)
@@ -30,7 +30,7 @@ struct CharacterDetailView: View {
 }
 
 private extension CharacterDetailView {
-    var infoSection: some View {
+    @ViewBuilder func makeInfo(for character: Character) -> some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Info")
                 .font(.appSectionTitle)
@@ -41,22 +41,22 @@ private extension CharacterDetailView {
                     HStack(alignment: .top, spacing: 8) {
                         Image(systemName: "creditcard")
                         
-                        Text(store.character.name)
+                        Text(character.name)
                             .alignmentGuide(.horizontalInfoAlignment, computeValue: { $0[.leading]} )
                     }
                     
                     HStack(alignment: .top, spacing: 8) {
                         Image(systemName: "person.fill.questionmark")
                         
-                        Text(store.character.species)
+                        Text(character.species)
                             .alignmentGuide(.horizontalInfoAlignment, computeValue: { $0[.leading]} )
                     }
                     
-                    if !store.character.type.isEmpty {
+                    if !character.type.isEmpty {
                         HStack(alignment: .top, spacing: 8) {
                             Image(systemName: "person.fill.viewfinder")
                             
-                            Text(store.character.type)
+                            Text(character.type)
                                 .alignmentGuide(.horizontalInfoAlignment, computeValue: { $0[.leading]} )
                         }
                     }
@@ -64,7 +64,7 @@ private extension CharacterDetailView {
                     HStack(alignment: .top, spacing: 8) {
                         Image(systemName: "person.and.arrow.left.and.arrow.right")
                         
-                        Text(store.character.gender)
+                        Text(character.gender)
                             .alignmentGuide(.horizontalInfoAlignment, computeValue: { $0[.leading]} )
                     }
                 }
@@ -75,13 +75,13 @@ private extension CharacterDetailView {
                     HStack(alignment: .top, spacing: 8) {
                         Image(systemName: "globe")
                         
-                        Text(store.character.origin.name)
+                        Text(character.origin.name)
                     }
                     
                     HStack(alignment: .top, spacing: 8) {
                         Image(systemName: "eyes")
                         
-                        Text(store.character.location.name)
+                        Text(character.location.name)
                     }
                 }
             }
@@ -89,7 +89,7 @@ private extension CharacterDetailView {
             .font(.appItemDescription)
     }
     
-    var episodesSection: some View {
+    @ViewBuilder var episodesSection: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Episodes")
                 .font(.appSectionTitle)
@@ -113,10 +113,10 @@ private extension CharacterDetailView {
         }
     }
 
-    var content: some View {
+    @ViewBuilder func makeContent(for character: Character) -> some View {
         ScrollView {
             VStack(spacing: 16) {
-                WebImage(url: store.character.imageUrl)
+                WebImage(url: character.imageUrl)
                     .resizable()
                     .placeholder {
                         ProgressView()
@@ -124,7 +124,7 @@ private extension CharacterDetailView {
                     .aspectRatio(contentMode: .fit)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                 
-                infoSection
+                makeInfo(for: character)
                 
                 episodesSection
             }
