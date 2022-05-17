@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CharacterListView: View {
-    let characters = Character.mockList
+    @StateObject var store = CharactersListStore()
     
     @State var mode: Mode = .list
     
@@ -16,9 +16,17 @@ struct CharacterListView: View {
         ZStack {
             BackgroundGradientView()
             
-            content
+            switch store.state {
+            case .initial, .loading:
+                ProgressView()
+            case .finished:
+                content
+            case .failed:
+                Text("😢 Something went wrong")
+            }
         }
         .navigationTitle("Characters")
+        .onFirstAppear(perform: load)
         .toolbar {
             ToolbarItem {
                 Button(action: toggleMode) {
@@ -41,12 +49,9 @@ struct CharacterListView: View {
     
     @ViewBuilder var listContent: some View {
         LazyVStack {
-            ForEach(characters) { character in
+            ForEach(store.characters) { character in
                 NavigationLink(
-                    destination: CharacterDetailView(
-                        character: character,
-                        episodes: Episode.mockList
-                    )
+                    destination: CharacterDetailView(store: .init(character: character))
                 ) {
                     CharacterListRowItemView(character: character)
                 }
@@ -77,6 +82,12 @@ extension CharacterListView {
 //        case .grid:
 //            mode = .list
 //        }
+    }
+
+    func load() {
+        Task {
+            await store.load()
+        }
     }
 }
 

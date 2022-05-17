@@ -9,36 +9,28 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct CharacterDetailView: View {
-    let character: Character
-    let episodes: [Episode]
-    
+    @StateObject var store: CharacterDetailStore
+
     var body: some View {
         ZStack {
             BackgroundGradientView()
             
-            ScrollView {
-                VStack(spacing: 16) {
-                    WebImage(url: character.imageUrl)
-                        .resizable()
-                        .placeholder {
-                            ProgressView()
-                        }
-                        .aspectRatio(contentMode: .fit)
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                    
-                    infoSection
-                    
-                    episodesSection
-                }
+            switch store.state {
+            case .initial, .loading:
+                ProgressView()
+            case .failed:
+                Text("😢 Something went wrong")
+            case .finished:
+                makeContent(for: store.character)
             }
-            .padding(.horizontal, 8)
         }
-        .navigationTitle(character.name)
+        .navigationTitle(store.character.name)
+        .onFirstAppear(perform: load)
     }
 }
 
 private extension CharacterDetailView {
-    var infoSection: some View {
+    @ViewBuilder func makeInfo(for character: Character) -> some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Info")
                 .font(.appSectionTitle)
@@ -97,14 +89,14 @@ private extension CharacterDetailView {
             .font(.appItemDescription)
     }
     
-    var episodesSection: some View {
+    @ViewBuilder var episodesSection: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Episodes")
                 .font(.appSectionTitle)
                 .foregroundColor(.appTextSectionTitle)
             
             LazyVStack(spacing: 8) {
-                ForEach(episodes) { episode in
+                ForEach(store.episodes) { episode in
                     HStack {
                         Text(episode.name)
                         
@@ -120,13 +112,38 @@ private extension CharacterDetailView {
             }
         }
     }
+
+    @ViewBuilder func makeContent(for character: Character) -> some View {
+        ScrollView {
+            VStack(spacing: 16) {
+                WebImage(url: character.imageUrl)
+                    .resizable()
+                    .placeholder {
+                        ProgressView()
+                    }
+                    .aspectRatio(contentMode: .fit)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                
+                makeInfo(for: character)
+                
+                episodesSection
+            }
+        }
+        .padding(.horizontal, 8)
+    }
+}
+
+// MARK: - Actions
+private extension CharacterDetailView {
+    func load() {
+        Task {
+            await store.load()
+        }
+    }
 }
 
 struct CharacterDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        CharacterDetailView(
-            character: Character.mock,
-            episodes: Episode.mockList
-        )
+        CharacterDetailView(store: .init(character: .mock))
     }
 }

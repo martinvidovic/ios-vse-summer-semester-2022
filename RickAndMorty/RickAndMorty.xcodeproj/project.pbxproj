@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2F34AADE27D9ED2D003C2C4C /* CharacterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F34AADD27D9ED2D003C2C4C /* CharacterListView.swift */; };
 		2F34AAE027D9F1FD003C2C4C /* CharacterListRowItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F34AADF27D9F1FD003C2C4C /* CharacterListRowItemView.swift */; };
-		2F34AAE327D9F3A3003C2C4C /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2F34AAE227D9F3A3003C2C4C /* SDWebImageSwiftUI */; };
 		2F49D9E927EB96DC0011E709 /* CharacterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49D9E827EB96DC0011E709 /* CharacterDetailView.swift */; };
 		2FF6108727A5A74E000D4A8B /* RickAndMortyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6108627A5A74E000D4A8B /* RickAndMortyApp.swift */; };
 		2FF6108927A5A74E000D4A8B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6108827A5A74E000D4A8B /* ContentView.swift */; };
@@ -33,6 +32,10 @@
 		AD01B0E227F58E8100553F44 /* EpisodesListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD01B0E027F58E8100553F44 /* EpisodesListItemView.swift */; };
 		AD01B0E727F5983A00553F44 /* WebRenderingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD01B0E627F5983A00553F44 /* WebRenderingView.swift */; };
 		AD01B0E927F599EF00553F44 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD01B0E827F599EF00553F44 /* WebView.swift */; };
+		ECD11E18280C1270009E7577 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = ECD11E17280C1270009E7577 /* SDWebImageSwiftUI */; };
+		ECD11E1A280C18A7009E7577 /* CharacterListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD11E19280C18A7009E7577 /* CharacterListStore.swift */; };
+		ECD11E1C280C2EC9009E7577 /* EpisodesListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD11E1B280C2EC9009E7577 /* EpisodesListStore.swift */; };
+		ECD11E1E280C58B6009E7577 /* CharacterDetailStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD11E1D280C58B6009E7577 /* CharacterDetailStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,10 +62,13 @@
 		2FF6110527A6DED5000D4A8B /* CharacterOrigin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterOrigin.swift; sourceTree = "<group>"; };
 		2FF6110727A6DF1F000D4A8B /* CharacterLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterLocation.swift; sourceTree = "<group>"; };
 		2FF6110927A6E1AA000D4A8B /* Alignment+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alignment+Custom.swift"; sourceTree = "<group>"; };
-		AD01B0DF27F58E8100553F44 /* EpisodesListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EpisodesListView.swift; path = RickAndMorty/Scenes/Episodes/EpisodesListView.swift; sourceTree = SOURCE_ROOT; };
-		AD01B0E027F58E8100553F44 /* EpisodesListItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EpisodesListItemView.swift; path = RickAndMorty/Scenes/Episodes/EpisodesListItemView.swift; sourceTree = SOURCE_ROOT; };
+		AD01B0DF27F58E8100553F44 /* EpisodesListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EpisodesListView.swift; path = "RickAndMorty/Scenes/New Group/Episodes/EpisodesListView.swift"; sourceTree = SOURCE_ROOT; };
+		AD01B0E027F58E8100553F44 /* EpisodesListItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EpisodesListItemView.swift; path = "RickAndMorty/Scenes/New Group/Episodes/EpisodesListItemView.swift"; sourceTree = SOURCE_ROOT; };
 		AD01B0E627F5983A00553F44 /* WebRenderingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRenderingView.swift; sourceTree = "<group>"; };
 		AD01B0E827F599EF00553F44 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		ECD11E19280C18A7009E7577 /* CharacterListStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListStore.swift; sourceTree = "<group>"; };
+		ECD11E1B280C2EC9009E7577 /* EpisodesListStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesListStore.swift; sourceTree = "<group>"; };
+		ECD11E1D280C58B6009E7577 /* CharacterDetailStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F34AAE327D9F3A3003C2C4C /* SDWebImageSwiftUI in Frameworks */,
+				ECD11E18280C1270009E7577 /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				2F34AADD27D9ED2D003C2C4C /* CharacterListView.swift */,
+				ECD11E19280C18A7009E7577 /* CharacterListStore.swift */,
 				2F34AADF27D9F1FD003C2C4C /* CharacterListRowItemView.swift */,
 			);
 			path = Characters;
@@ -90,18 +97,9 @@
 			isa = PBXGroup;
 			children = (
 				2F49D9E827EB96DC0011E709 /* CharacterDetailView.swift */,
+				ECD11E1D280C58B6009E7577 /* CharacterDetailStore.swift */,
 			);
 			path = "Character Detail";
-			sourceTree = "<group>";
-		};
-		2F49DA1D27EBA8230011E709 /* Episodes */ = {
-			isa = PBXGroup;
-			children = (
-				AD01B0E027F58E8100553F44 /* EpisodesListItemView.swift */,
-				AD01B0DF27F58E8100553F44 /* EpisodesListView.swift */,
-			);
-			name = Episodes;
-			path = "../../../../../VŠE/ios-vse-summer-semester-2022/RickAndMorty/RickAndMorty/Scenes/Episodes";
 			sourceTree = "<group>";
 		};
 		2FF6107A27A5A74E000D4A8B = {
@@ -125,9 +123,6 @@
 			children = (
 				2FF610E927A5F5BA000D4A8B /* Info.plist */,
 				2FF6112127A70608000D4A8B /* App */,
-				2FF6109427A5A77B000D4A8B /* API */,
-				2FF610B827A5D3BA000D4A8B /* DI */,
-				2FF610BD27A5D4DA000D4A8B /* Logger */,
 				2FF6109827A5A7C2000D4A8B /* Model */,
 				2FF6111E27A70581000D4A8B /* Persistence */,
 				2FF6108C27A5A74F000D4A8B /* Preview Content */,
@@ -148,13 +143,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		2FF6109427A5A77B000D4A8B /* API */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
 		2FF6109827A5A7C2000D4A8B /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,26 +154,12 @@
 		2FF610A427A5D198000D4A8B /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				2F49DA1D27EBA8230011E709 /* Episodes */,
+				ECDA48C3280C11CE00972003 /* Episodes */,
 				2F49D9E727EB96DC0011E709 /* Character Detail */,
 				2F34AADC27D9ED09003C2C4C /* Characters */,
 				2FF6108827A5A74E000D4A8B /* ContentView.swift */,
 			);
 			path = Scenes;
-			sourceTree = "<group>";
-		};
-		2FF610B827A5D3BA000D4A8B /* DI */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DI;
-			sourceTree = "<group>";
-		};
-		2FF610BD27A5D4DA000D4A8B /* Logger */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Logger;
 			sourceTree = "<group>";
 		};
 		2FF610C127A5DC07000D4A8B /* Domain */ = {
@@ -271,6 +245,17 @@
 			path = WebView;
 			sourceTree = "<group>";
 		};
+		ECDA48C3280C11CE00972003 /* Episodes */ = {
+			isa = PBXGroup;
+			children = (
+				AD01B0E027F58E8100553F44 /* EpisodesListItemView.swift */,
+				AD01B0DF27F58E8100553F44 /* EpisodesListView.swift */,
+				ECD11E1B280C2EC9009E7577 /* EpisodesListStore.swift */,
+			);
+			name = Episodes;
+			path = "New Group/Episodes";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -288,7 +273,7 @@
 			);
 			name = RickAndMorty;
 			packageProductDependencies = (
-				2F34AAE227D9F3A3003C2C4C /* SDWebImageSwiftUI */,
+				ECD11E17280C1270009E7577 /* SDWebImageSwiftUI */,
 			);
 			productName = RickAndMorty;
 			productReference = 2FF6108327A5A74E000D4A8B /* RickAndMorty.app */;
@@ -319,7 +304,7 @@
 			);
 			mainGroup = 2FF6107A27A5A74E000D4A8B;
 			packageReferences = (
-				2F34AAE127D9F3A3003C2C4C /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				ECD11E16280C1270009E7577 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = 2FF6108427A5A74E000D4A8B /* Products */;
 			projectDirPath = "";
@@ -356,14 +341,17 @@
 				2F34AAE027D9F1FD003C2C4C /* CharacterListRowItemView.swift in Sources */,
 				2F49D9E927EB96DC0011E709 /* CharacterDetailView.swift in Sources */,
 				AD01B0E927F599EF00553F44 /* WebView.swift in Sources */,
+				ECD11E1C280C2EC9009E7577 /* EpisodesListStore.swift in Sources */,
 				AD01B0E127F58E8100553F44 /* EpisodesListView.swift in Sources */,
 				2FF6110827A6DF1F000D4A8B /* CharacterLocation.swift in Sources */,
+				ECD11E1E280C58B6009E7577 /* CharacterDetailStore.swift in Sources */,
 				AD01B0E727F5983A00553F44 /* WebRenderingView.swift in Sources */,
 				2FF6108727A5A74E000D4A8B /* RickAndMortyApp.swift in Sources */,
 				2FF610E627A5F325000D4A8B /* Color+App.swift in Sources */,
 				2FF6110627A6DED5000D4A8B /* CharacterOrigin.swift in Sources */,
 				2FF610CA27A5E146000D4A8B /* URL+Convenience.swift in Sources */,
 				2FF6110A27A6E1AA000D4A8B /* Alignment+Custom.swift in Sources */,
+				ECD11E1A280C18A7009E7577 /* CharacterListStore.swift in Sources */,
 				2FF610D627A5EDDD000D4A8B /* OnFirstAppearViewModifier.swift in Sources */,
 				2FF610DE27A5EEEC000D4A8B /* Location.swift in Sources */,
 				2F34AADE27D9ED2D003C2C4C /* CharacterListView.swift in Sources */,
@@ -500,7 +488,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"RickAndMorty/Preview Content\"";
-				DEVELOPMENT_TEAM = VKFK92G6KE;
+				DEVELOPMENT_TEAM = 2BZY3UW38Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RickAndMorty/Info.plist;
@@ -514,7 +502,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jankaltoun.RickAndMorty;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jankaltoun.RickAndMortya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -530,7 +518,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"RickAndMorty/Preview Content\"";
-				DEVELOPMENT_TEAM = VKFK92G6KE;
+				DEVELOPMENT_TEAM = 2BZY3UW38Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RickAndMorty/Info.plist;
@@ -544,7 +532,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jankaltoun.RickAndMorty;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jankaltoun.RickAndMortya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -576,20 +564,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2F34AAE127D9F3A3003C2C4C /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+		ECD11E16280C1270009E7577 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2F34AAE227D9F3A3003C2C4C /* SDWebImageSwiftUI */ = {
+		ECD11E17280C1270009E7577 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2F34AAE127D9F3A3003C2C4C /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			package = ECD11E16280C1270009E7577 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
